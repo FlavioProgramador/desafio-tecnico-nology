@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "./App.css";
 import CashbackForm from "./components/CashbackForm";
+import TabelaHistorico from "./components/TabelaHistorico";
 
 const API_URL = import.meta.env.VITE_API_URL || "http://127.0.0.1:8000";
 
