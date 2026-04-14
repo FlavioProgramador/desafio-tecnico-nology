@@ -1,15 +1,18 @@
 import os
 from datetime import datetime
-from fastapi import FastAPI, Depends, Request
+from dotenv import load_dotenv
+from fastapi import Depends, FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
-from sqlalchemy import create_engine, Column, Integer, Float, Boolean, String, DateTime
-from sqlalchemy.orm import declarative_base, sessionmaker, Session
+from sqlalchemy import Boolean, Column, DateTime, Float, Integer, String, create_engine
+from sqlalchemy.orm import Session, declarative_base, sessionmaker
+
+# Carrega arquivos de ambiente .env se houver
+load_dotenv()
 
 # --- Configuração do Banco de Dados (PostgreSQL) ---
-# Em produção (Vercel), a URL virá da variável de ambiente DATABASE_URL.
-# Formato do Postgre: "postgresql://usuario:senha@host:5432/nome_do_banco"
-DATABASE_URL = os.getenv("DATABASE_URL", "postgresql://usuario:senha@localhost:5432/cashback_db")
+# A URL fica escondida nas Variaveis de Ambiente da Vercel ou no .env local.
+DATABASE_URL = os.getenv("DATABASE_URL", "sqlite:///./local.db")
 
 engine = create_engine(DATABASE_URL)
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
@@ -54,7 +57,7 @@ def get_db():
 
 @app.get("/")
 def read_root():
-    return {"status": "ok", "mensagem": "API de Cashback conectada ao Postgre!"}
+    return {"status": "ok", "mensagem": "API de Cashback conectada ao PostgreSQL!"}
 
 # --- Schemas ---
 class CalculoRequest(BaseModel):
