@@ -9,6 +9,9 @@ function App() {
   const [loading, setLoading] = useState(false);
   const [erro, setErro] = useState(null);
 
+  // Gatilho para recarregar o histórico após enviar nova compra
+  const [updateTrigger, setUpdateTrigger] = useState(0);
+
   const handleCalcular = async (dados) => {
     setLoading(true);
     setErro(null);
@@ -31,6 +34,9 @@ function App() {
 
       const dadosResposta = await response.json();
       setResultadoCashback(dadosResposta.cashback);
+
+      // Dispara a atualização do componente de Histórico
+      setUpdateTrigger((prev) => prev + 1);
     } catch (err) {
       setErro("Falha de conexão com a API. O Backend (Python) está rodando?");
       console.error(err);
@@ -87,6 +93,9 @@ function App() {
           </h2>
         </div>
       )}
+
+      {/* Componente de Tabela com o Histórico */}
+      <TabelaHistorico updateTrigger={updateTrigger} />
     </div>
   );
 }
