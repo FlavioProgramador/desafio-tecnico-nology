@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 
-const API_URL = import.meta.env.VITE_API_URL || "http://127.0.0.1:8000";
+// URL Inteligente: aponta para localhost na sua máquina, e para a própria raiz na Vercel
+const API_URL = import.meta.env.DEV ? "http://127.0.0.1:8000" : "";
 
 function TabelaHistorico({ updateTrigger }) {
   const [historico, setHistorico] = useState([]);

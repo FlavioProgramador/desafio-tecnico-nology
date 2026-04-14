@@ -3,7 +3,8 @@ import "./App.css";
 import CashbackForm from "./components/CashbackForm";
 import TabelaHistorico from "./components/TabelaHistorico";
 
-const API_URL = import.meta.env.VITE_API_URL || "http://127.0.0.1:8000";
+// URL da API muda sozinha: porta 8000 no computador, mesmo domínio na Vercel!
+const API_URL = import.meta.env.DEV ? "http://127.0.0.1:8000" : "";
 
 function App() {
   const [resultadoCashback, setResultadoCashback] = useState(null);
