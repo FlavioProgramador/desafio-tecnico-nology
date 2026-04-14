@@ -1,0 +1,29 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.env
+.venv/
+venv/
+env/
+
+# Banco de dados
+*.sqlite3
+*.db
+cashback.db
+
+# Frontend (Node / React)
+node_modules/
+dist/
+build/
+.npm/
+coverage/
+
+# Vercel / Deploy
+.vercel/
+
+# Configurações de SO e IDE
+.vscode/
+.DS_Store
+.idea/
