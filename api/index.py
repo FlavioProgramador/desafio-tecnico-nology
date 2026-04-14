@@ -103,3 +103,14 @@ def calcular(request_data: CalculoRequest, request: Request, db: Session = Depen
         "is_vip": request_data.is_vip,
         "ip_registrado": user_ip
     }
+@app.get("/api/historico")
+def obter_historico(request: Request, db: Session = Depends(get_db)):
+    # Identificar IP do usuário para filtrar o histórico
+    user_ip = request.headers.get("x-forwarded-for", request.client.host)
+
+    # Busca apenas o histórico do IP que fez a requisição
+    historico = db.query(ConsultaHistorico).filter(
+        ConsultaHistorico.ip_usuario == user_ip
+    ).order_by(ConsultaHistorico.data_consulta.desc()).all()
+    
+    return historico
