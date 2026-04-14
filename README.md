@@ -1,5 +1,7 @@
 # Simulador de Cashback - Desafio Técnico
 
+🌍 **Acesse o App Online:** [https://desafio-tecnico-nology.vercel.app](https://desafio-tecnico-nology.vercel.app)
+
 Este projeto é a solução para a **Questão 5** do desafio técnico. Trata-se de uma aplicação Full Stack que calcula o valor de cashback baseado em regras de negócio específicas e mantém um histórico de consultas filtrado pelo IP do usuário.
 
 ## 🚀 Funcionalidades
